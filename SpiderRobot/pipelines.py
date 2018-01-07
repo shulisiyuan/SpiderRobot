@@ -19,6 +19,7 @@ class SpiderrobotPipeline(object):
     def process_item(self, item, spider):
         """process_item"""
         #line = item['urlname'] + "\n"
+
         self.savefile.write(item['files'])
         return item
 
@@ -31,9 +32,9 @@ class IPProxyPipeline(object):
     """用来存储ip代理
     """
     def __init__(self):
-        """__init__"""
-        self.ip_proxy_file = codecs.open("/home/xuhaoguang/work/project/SpiderRobot/SpiderRobot/ip_proxy.txt", "wb")
+        """__init__""" 
         #print "进入pipeline的__init__"
+        self.ip_proxy_file = codecs.open("/home/xuhaoguang/work/project/SpiderRobot/SpiderRobot/ip_proxy.txt", "wb")
 
     def process_item(self, item, spider):
         """process_item"""
@@ -42,10 +43,9 @@ class IPProxyPipeline(object):
         for k, v in item.iteritems():
             #print v
             self.ip_proxy_file.write(v + "\n")
-        #return item
-
+        return item
+        
     def close_spider(self, spider):
         """close_spider"""
         self.ip_proxy_file.close()
         #print "爬虫结束"
-

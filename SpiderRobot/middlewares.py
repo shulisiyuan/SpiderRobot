@@ -6,7 +6,7 @@
 # http://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
 import random
-from SpiderRobot.settings import IPPOOL #ippool is added inadvanced
+#from SpiderRobot.settings import IPPOOL #ippool is added inadvanced
 from scrapy.downloadermiddlewares.httpproxy import HttpProxyMiddleware #about ip proxy 
 from scrapy import signals
 
@@ -18,13 +18,20 @@ class IPPOOLS(HttpProxyMiddleware):
         """init
         """
         self.ip = ip
-    
+        self.IPPOOL = []
+        with open("ip_proxy.txt") as input:
+            for line in input:
+                self.IPPOOL.append(line.strip("\n"))
+
     def process_request(self, request, spider):
         """process_request
         """
-        thisip = random.choice(IPPOOL)
-        print "当前使用的ip是 " + thisip["ipaddr"]
-        request.meta["proxy"] = "http://" + thisip['ipaddr']
+        
+        thisip = random.choice(self.IPPOOL)
+        
+        print "当前使用的ip是 " + thisip
+        
+        request.meta["proxy"] = "http://" + thisip
         
 class SpiderrobotSpiderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,

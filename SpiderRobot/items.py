@@ -9,9 +9,6 @@ import scrapy
 
 
 class SpiderrobotItem(scrapy.Item):
-    # define the fields for your item here like:
-    #urlname = scrapy.Field()
-    #urlkey = scrapy.Field()
     url = scrapy.Field()
     files = scrapy.Field()
 

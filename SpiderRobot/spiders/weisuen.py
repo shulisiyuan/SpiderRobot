@@ -23,6 +23,12 @@ class WeisuenSpider(scrapy.Spider):
     #    print item['urlname']
     #    #return item
 
+    #这一步很重要，为spider指定需要执行的pipeline
+    custom_settings = {
+            'ITEM_PIPELINES': {
+                'SpiderRobot.pipelines.SpiderrobotPipeline': 1,
+            }
+    } 
 
     def start_requests(self):
         url = 'http://wenshu.court.gov.cn/CreateContentJS/CreateListDocZip.aspx?action=1'

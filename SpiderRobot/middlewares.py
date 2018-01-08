@@ -19,7 +19,7 @@ class IPPOOLS(HttpProxyMiddleware):
         """
         self.ip = ip
         self.IPPOOL = []
-        with open("ip_proxy.txt") as input:
+        with open("/home/xuhaoguang/work/project/SpiderRobot/SpiderRobot/ip_proxy.txt") as input:
             for line in input:
                 self.IPPOOL.append(line.strip("\n"))
 
